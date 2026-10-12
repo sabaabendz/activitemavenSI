@@ -1,3 +1,4 @@
+
 package tn.esprit.nomprenomclasse3.activitemaven.entities;
 
 import jakarta.persistence.*;
@@ -8,6 +9,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,4 +28,16 @@ public class Contrat {
     private BigDecimal montantTotal;
 
     private Boolean valide;
+
+    @OneToMany(
+            mappedBy = "contrat",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Paiement> paiements = new ArrayList<>();
+
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Reservation reservation;
 }

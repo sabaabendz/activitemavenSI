@@ -1,3 +1,4 @@
+
 package tn.esprit.nomprenomclasse3.activitemaven.entities;
 
 import jakarta.persistence.*;
@@ -26,4 +27,8 @@ public class Paiement {
 
     @Enumerated(EnumType.STRING)
     private ModePaiement modePaiement;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Contrat contrat;
 }

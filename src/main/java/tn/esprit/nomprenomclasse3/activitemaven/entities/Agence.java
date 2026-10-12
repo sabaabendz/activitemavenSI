@@ -1,21 +1,26 @@
+
 package tn.esprit.nomprenomclasse3.activitemaven.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Agence {
 
     @Id
@@ -23,7 +28,19 @@ public class Agence {
     private Long idAgence;
 
     private String nom;
+
     private String ville;
+
     private String adresse;
+
     private String telephone;
+
+
+    @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    private List<Vehicule> vehicules = new ArrayList<>();
+
+
+
+    @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    private List<Employe> employes = new ArrayList<>();
 }

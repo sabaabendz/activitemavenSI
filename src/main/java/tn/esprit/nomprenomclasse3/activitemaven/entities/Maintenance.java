@@ -1,3 +1,4 @@
+
 package tn.esprit.nomprenomclasse3.activitemaven.entities;
 
 import jakarta.persistence.*;
@@ -24,4 +25,7 @@ public class Maintenance {
     private LocalDate dateFin;
 
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vehicule vehicule;
 }
